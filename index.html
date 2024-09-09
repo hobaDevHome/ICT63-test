@@ -22,10 +22,15 @@
   }
 </style>
 <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
-<script src="index.js?1725447709692"></script>
+<script src="index.js?1725888373741"></script>
 <script>
 // Global Scripts
-	var userName = "";
+	var meta = document.createElement('meta');
+meta.name = 'viewport';
+meta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
+// Append the meta tag to the document head
+document.getElementsByTagName('head')[0].appendChild(meta);
+var userName = "";
 var enLang = true;
 var muteAction = false;
 var dimmed = false;
@@ -40,7 +45,7 @@ function move(f = 0) {
 	console.log("move to : ", dimmed, f)
 	if (!dimmed) {
 		createjs.Sound.stop();
-		this.gotoAndStop(f);
+		setTimeout(()=>{this.gotoAndStop(f);},100)
 	}
 }
 //language handler
@@ -55,10 +60,18 @@ function dimHndler() {
 }
 function correctAnsHandler(i) {
 	ansArr[i] = "correct";
+	playSoundEffect("Write_answer")
 }
 function wrongAnsHandler(i) {
 	ansArr[i] = "wrong";
+    playSoundEffect("Wrong_Answer")
 }
+function playSoundEffect(effect){
+	console.log("effect: ", dimmed)
+	if (!dimmed) {
+	createjs.Sound.play(effect);
+	}
+	}
 function PlaySounds(soundName, timeline) {
 	var lan = "";
 	if (enLang) {
@@ -72,11 +85,24 @@ function PlaySounds(soundName, timeline) {
 			if (timeline) {
 				dimmed = false;
 				timeline.gotoAndStop(timeline.currentFrame + 1)
-				console.log("finished")
+				console.log("sound finished")
+				console.log("sound finished ", dimmed)
 			}
 		})
 	}
 }
+createjs.Sound.registerSounds([
+    { id: "choosing_task", src: "Sound Effects/choosing_task.mp3" },
+    { id: "Logo", src: "Sound Effects/Logo.wav" },
+    { id: "Robot_Entrance", src: "Sound Effects/Robot_Entrance.mp3" },
+	{ id: "intro", src: "Sound Effects/intro.mp3" },
+	{ id: "Click_buttons", src: "Sound Effects/Click_buttons.mp3" },
+	{ id: "Keyboard_typing", src: "Sound Effects/Keyboard_typing.mp3" },
+	{ id: "Write_answer", src: "Sound Effects/Write_answer.mp3" },
+	{ id: "Wrong_Answer", src: "Sound Effects/Wrong_Answer.mp3" },
+	{ id: "Oops", src: "Sound Effects/Oops.mp3" },
+	{ id: "Finishing _task", src: "Sound Effects/Finishing _task.mp3" },
+], "");
 createjs.Sound.registerSound({
 	id: "Arabic04",
 	src: "Sounds/Task2/ar/04.mp3"
@@ -294,6 +320,6 @@ function handleComplete(evt,comp) {
 		<div id="dom_overlay_container" style="pointer-events:none; overflow:hidden; width:1024px; height:576px; position: absolute; left: 0px; top: 0px; display: none;">
 		</div>
 	</div>
-    <div id='_preload_div_' style='position:absolute; top:0; left:0; display: inline-block; height:576px; width: 1024px; text-align: center;'>	<span style='display: inline-block; height: 100%; vertical-align: middle;'></span>	<img src=images/_preloader.gif?1725447709693 style='vertical-align: middle; max-height: 100%'/></div>
+    <div id='_preload_div_' style='position:absolute; top:0; left:0; display: inline-block; height:576px; width: 1024px; text-align: center;'>	<span style='display: inline-block; height: 100%; vertical-align: middle;'></span>	<img src=images/_preloader.gif?1725888373742 style='vertical-align: middle; max-height: 100%'/></div>
 </body>
 </html>
