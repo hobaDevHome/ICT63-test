@@ -1,0 +1,38 @@
+.ui-textinput {
+  background-color: transparent;
+}
+
+.ui-textinput3::before {
+  color: #666;
+  content: "Email";
+}
+input {
+  border: none;
+  padding: 5px;
+}
+
+input:focus {
+  outline: none;
+}
+.ui-textinput {
+  font-size: 22px;
+}
+
+.ui-textinput2 {
+  /* background-color: #F1F3F4; */
+  background-color: transparent;
+  font-size: 12px;
+  /* color: #868686; */
+}
+
+.ui-textinput3 {
+  background-color: transparent;
+  font-size: 12px;
+  /* color: #868686; */
+}
+
+.ui-textinput4 {
+  background-color: transparent;
+  font-size: 12px;
+  /* color: #868686; */
+}
